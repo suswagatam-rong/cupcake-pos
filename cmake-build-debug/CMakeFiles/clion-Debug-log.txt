@@ -1,0 +1,4 @@
+/Users/suswagatam/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Users/suswagatam/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S "/Users/suswagatam/Developer/Private/Cupcake POS in CPP" -B "/Users/suswagatam/Developer/Private/Cupcake POS in CPP/cmake-build-debug"
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/suswagatam/Developer/Private/Cupcake POS in CPP/cmake-build-debug

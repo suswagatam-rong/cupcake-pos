@@ -1,0 +1,3 @@
+/Users/suswagatam/Developer/Private/Cupcake POS in CPP/cmake-build-debug/CMakeFiles/Cupcake_POS_in_CPP.dir
+/Users/suswagatam/Developer/Private/Cupcake POS in CPP/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/suswagatam/Developer/Private/Cupcake POS in CPP/cmake-build-debug/CMakeFiles/rebuild_cache.dir
