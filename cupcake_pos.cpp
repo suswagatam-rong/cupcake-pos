@@ -14,8 +14,8 @@ int returnRandomNumber();
 
 class SaleItem {
 public:
-    SaleItem() :
-        id(0), price(0.0), tax_rate(0.0), description(""), quantity(1) {
+    SaleItem():
+        id(0), price(0.0), quantity(1) {
     }
 
     ~SaleItem() = default;
@@ -28,34 +28,28 @@ public:
     }
 
     // getters to access the private data members
-    int getID() const {
+    [[nodiscard]] int getID() const {
         return id;
     }
-    double getPrice() const {
+    [[nodiscard]] double getPrice() const {
         return price;
     }
     std::string getDescription() {
         return description;
     }
-    int getQuantity() const {
+    [[nodiscard]] int getQuantity() const {
         return quantity;
-    }
-    double getTaxRate() const {
-        return tax_rate;
     }
 
     // setters to update/initialise the private data members
     void setPrice(double new_price) {
         this->price = new_price;
     }
-    void setDescription(std::string new_description) {
+    [[maybe_unused]] void setDescription(std::string new_description) {
         this->description = std::move(new_description);
     };
     void setQuantity(int new_quantity) {
         this->quantity = new_quantity;
-    }
-    void setTaxRate(double new_taxRate) {
-        this->tax_rate = new_taxRate;
     }
 
     void purchaseItem (int purchase_quantity) {
@@ -65,13 +59,13 @@ public:
 private:
     int id;
     double price;
-    double tax_rate;
     std::string description;
     int quantity;
 };
 
 int main() {
-    //srand(time(NULL));
+
+    double tax_rate = 0;
 
     std::list<SaleItem> inventory;
     std::list<SaleItem>::iterator iter;
@@ -106,17 +100,27 @@ int main() {
         // POS Menu
         std::cout << std::endl
                   << std::endl;
+
+        std::cout << "Tax Rate: " << "%" << std::endl;
+        std::cout << "============================================================" << std::endl;
+
         std::cout << "[a]dd a new cupcake" << std::endl;
         std::cout << "[c]omplete a cupcake purchase" << std::endl;
+        std::cout << "[n]ew tax rate" << std::endl;
         std::cout << "[u]pdate cupcake quantity" << std::endl;
         std::cout << "[q]uit" << std::endl;
 
-        std::cout << "\nChoice: [acuq] - ";
+        std::cout << "\nChoice: [acnuq] - ";
         std::cin >> user_choice;
 
         if (user_choice == 'q') {
             std::cout << "\nHave a wonderful day!" << std::endl;
             break;
+        }
+        else if (user_choice == 'n') {
+            std::cout << "\nEnter a new tax rate: ";
+            std::cin >> tax_rate;
+            std::cout << std::endl;
         }
         else if (user_choice == 'c') {
             int checkout_id;
@@ -142,7 +146,7 @@ int main() {
                         iter->purchaseItem(checkout_quantity);
 
                         total_amount = checkout_quantity * iter->getPrice();
-                        total_tax = total_amount * (iter->getTaxRate() * 0.01);
+                        total_tax = total_amount * (tax_rate * 0.01);
 
                         std::cout << "Total amount: " << total_amount << std::endl;
                         std::cout << "Tax: " << total_tax << std::endl;
