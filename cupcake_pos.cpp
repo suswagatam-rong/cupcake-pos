@@ -65,17 +65,17 @@ private:
 
 int main() {
 
-    double tax_rate = 0;
+    double tax_rate = 0.0;
 
     std::list<SaleItem> inventory;
     std::list<SaleItem>::iterator iter;
     inventory.clear();
 
-    SaleItem test1;
-    test1.create("Vanilla");
-    test1.setPrice(4.95);
-    test1.setQuantity(5);
-    inventory.push_back(test1);
+//    SaleItem test1;
+//    test1.create("Vanilla");
+//    test1.setPrice(4.95);
+//    test1.setQuantity(5);
+//    inventory.push_back(test1);
 
     std::string version = "v0.2.0";
     char user_choice;
@@ -97,11 +97,15 @@ int main() {
                     << iter->getQuantity() << std::endl;
         }
 
+        if (inventory.empty()) {
+            std::cout << "Add a new cupcake :(" <<std::endl;
+        }
+
         // POS Menu
         std::cout << std::endl
                   << std::endl;
 
-        std::cout << "Tax Rate: " << "%" << std::endl;
+        std::cout << "Tax Rate: " << tax_rate << "%" << std::endl;
         std::cout << "============================================================" << std::endl;
 
         std::cout << "[a]dd a new cupcake" << std::endl;
@@ -118,9 +122,27 @@ int main() {
             break;
         }
         else if (user_choice == 'n') {
-            std::cout << "\nEnter a new tax rate: ";
+            std::cout << "Enter a new tax rate: ";
             std::cin >> tax_rate;
-            std::cout << std::endl;
+        }
+        else if (user_choice == 'a') {
+
+            std::string new_description;
+            double new_price;
+
+            std::cout << "Enter new cupcake description: ";
+            std::cin.clear();
+            std::cin.ignore();
+            std::getline(std::cin, new_description);
+
+            std::cout << "Set new cupcake price: ";
+            std::cin >> new_price;
+
+            SaleItem item;
+            item.create(new_description);
+            item.setPrice(new_price);
+            inventory.push_back(item);
+
         }
         else if (user_choice == 'c') {
             int checkout_id;
